@@ -20,8 +20,7 @@ let Dimension= document.getElementById("Dimension")
 
 let ruleta= document.getElementById("Ruleta")
 
-let titulo = document.getElementById("titulo")
-titulo.setAttribute("hola",1)
+
 
 ///let aver=JSON.parse(localStorage.getItem("Ganadores"))
 //aver.push(1)
@@ -248,13 +247,59 @@ function validarInputs(){
     formulario.addEventListener("keyup",()=>{
 
 
+        
+        if(formulario.nombre1.value=="" && formulario.nombre2.value=="" && formulario.nombre3.value=="" && formulario.nombre4.value=="" ){
+            boton.disabled=true;
+    
+        }
+        
         if(formulario.nombre1.value!="" && formulario.nombre2.value!="" && formulario.nombre3.value!="" && formulario.nombre4.value!="" 
         && Dimension.value >=3 && Dimension.value <=5){
             boton.disabled=false;
     
         }
+
+        if (formulario.nombre1.value !== formulario.nombre2.value && formulario.nombre1.value !== formulario.nombre3.value && formulario.nombre1.value !== formulario.nombre4.value &&
+            formulario.nombre2.value !== formulario.nombre3.value && formulario.nombre2.value !== formulario.nombre4.value && formulario.nombre3.value !== formulario.nombre4.value) {
+                
+        }else{
+            boton.disabled=true;
+        }
     
+        if(formulario.nombre1.value=="" || formulario.nombre2.value=="" || formulario.nombre3.value=="" || formulario.nombre4.value=="" ){
+            boton.disabled=true;
+    
+        }
         
+    })
+
+    
+
+    Dimension.addEventListener("keyup",()=>{
+        if(Dimension.value>5){
+            Dimension.value=5;
+        }
+        if(Dimension.value<3){
+            Dimension.value=3;
+        }
+        
+        if(formulario.nombre1.value!="" && formulario.nombre2.value!="" && formulario.nombre3.value!="" && formulario.nombre4.value!="" 
+        && Dimension.value >=3 && Dimension.value <=5){
+            boton.disabled=false;
+    
+        }
+
+        if(formulario.nombre1.value=="" || formulario.nombre2.value=="" || formulario.nombre3.value=="" || formulario.nombre4.value=="" ){
+            boton.disabled=true;
+    
+        }
+
+        if (formulario.nombre1.value !== formulario.nombre2.value && formulario.nombre1.value !== formulario.nombre3.value && formulario.nombre1.value !== formulario.nombre4.value &&
+            formulario.nombre2.value !== formulario.nombre3.value && formulario.nombre2.value !== formulario.nombre4.value && formulario.nombre3.value !== formulario.nombre4.value) {
+                
+        }else{
+            boton.disabled=true;
+        }
         
     })
 
@@ -271,15 +316,23 @@ function validarInputs(){
             boton.disabled=false;
     
         }
+
+        if (formulario.nombre1.value !== formulario.nombre2.value && formulario.nombre1.value !== formulario.nombre3.value && formulario.nombre1.value !== formulario.nombre4.value &&
+            formulario.nombre2.value !== formulario.nombre3.value && formulario.nombre2.value !== formulario.nombre4.value && formulario.nombre3.value !== formulario.nombre4.value) {
+                
+        }else{
+            boton.disabled=true;
+        }
         
     })
 
+    
 
     
     
 
 }
-validarInputs()
+
 
 
 function botonRuleta(){
@@ -295,6 +348,7 @@ function botonRuleta(){
             
 
             agregarAlocalStorage(regresarGanador());
+            ruleta.disabled=true;
             
 
         }else{
@@ -821,4 +875,4 @@ BotonJuego()
 
 
 BotonReiniciar()
-
+validarInputs()
