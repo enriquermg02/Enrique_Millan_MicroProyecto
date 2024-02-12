@@ -1,7 +1,8 @@
 
-//localStorage.clear()
+
 let jugadores =[[],[],[],[]]
 let turnos= 0;
+
 
 let puntaje1=0
 let puntaje2=0
