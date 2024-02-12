@@ -90,7 +90,7 @@ function BotonReiniciar(){
 
     let reiniciar=document.getElementById("BotonReiniciar")
     let formulario=document.getElementById("formularioNombres")
-    
+    let turn=document.getElementById("turno")
     reiniciar.addEventListener('click', () => {
 
     puntajes=[0,0,0,0]
@@ -112,9 +112,10 @@ function BotonReiniciar(){
 
       boton.disabled=true; 
       ruleta.disabled=false
-    
+        turn.innerText="TURNO: 0"
         tercero.style.display = "none";
         segundo.style.display = "flex";
+
         acutualizarGanadores()
     })
     
@@ -345,7 +346,11 @@ function botonRuleta(){
         
 
         if(revisarGanador()==1){
-            
+            puntajes=[0,0,0,0]
+            revisarFilas()
+            revisarColumnas()
+            revisarDiagonales()
+            SumarGanador()   
 
             agregarAlocalStorage(regresarGanador());
             ruleta.disabled=true;
@@ -630,8 +635,9 @@ function revisarGanador(){
 
 }
 
-function regresarGanador(){
+function    SumarGanador(){
    let iterador=0
+   let points = document.getElementsByClassName("puntos")
 
     for (const jugador of jugadores) {
         let numero=1
@@ -655,7 +661,15 @@ function regresarGanador(){
         }
 
         if(numero==1){
-            return iterador;
+            puntajes[iterador]++;
+            puntajes[iterador]++;
+            puntajes[iterador]++;
+            puntajes[iterador]++;
+            puntajes[iterador]++;
+            
+
+            
+
         }
       
         
@@ -664,7 +678,44 @@ function regresarGanador(){
     }
 }
 
-
+function regresarGanador(){
+    let iterador=0
+    let points = document.getElementsByClassName("puntos")
+ 
+     for (const jugador of jugadores) {
+         let numero=1
+         
+         //columnas
+         
+         for (let i = 0; i < jugador.length; i++) {
+             let fila=i;
+             
+             for (let i = 0; i < jugador.length; i++) {
+ 
+ 
+ 
+ 
+                 if  (jugador[fila][i].getAttribute("seleccionado")=="false"){
+                     numero=0
+                     
+                   }
+             }
+   
+         }
+ 
+         if(numero==1){
+             
+ 
+             points[iterador].innerText=`${puntajes[iterador]}`
+             return iterador;
+ 
+         }
+       
+         
+ 
+         iterador ++;  
+     }
+ }
 //reviar si  las filas estan completas
 function revisarFilas(){
     let points = document.getElementsByClassName("puntos")
